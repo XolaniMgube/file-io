@@ -34,7 +34,7 @@ class Visitor {
 }
 
 let xolani = new Visitor("xolani mgube", 22, "10 Feb 2020", "09:00", "I have no comment", "Sbu")
-let karabo = new Visitor("karabo mantse", 20, "13 Feb 2020", "09:00", "the place had to many people", "Sbu")
+let karabo = new Visitor("karabo mantse", 20, "13 Feb 2020", "09:00", "the place had too many people", "Sbu")
 xolani.save();
 karabo.save()
 karabo.load();
