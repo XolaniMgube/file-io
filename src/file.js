@@ -4,28 +4,26 @@ let fs = require("fs")
 
 class Visitor {
     constructor(fullName, age, dateOfVisit, timeOfVisit, comments, assistedBy) {
-        this.fullName = fullName
+        this.fullName = fullName.replace(" ", "_")
         this.age = age
         this.dateOfVisit = dateOfVisit
         this.timeOfVisit = timeOfVisit
         this.comments = comments
         this.assistedBy = assistedBy
+        
     }
 
     save() {
-        let nameWithUnderscore = this.fullName.replace(" ", "_")
-        fs.writeFile("visitor_" + nameWithUnderscore + ".json", JSON.stringify(this,null,4),
+        fs.writeFile("visitor_" + this.fullName + ".json", JSON.stringify(this,null,4),
             function(error) {
                 if (error) {
                     throw error
                 }
             })
     }
-    
+
     load() {
-        let nameWithUnderscore = this.fullName.replace(" ", "_")
-        fs.readFile("visitor_" + nameWithUnderscore + ".json", UTF8, 
-        function(error, data) {
+        fs.readFile("visitor_" + this.fullName + ".json", "UTF8",  function(error, data) {
             if (error) {
                 throw error;
             } else {
@@ -35,6 +33,11 @@ class Visitor {
     }
 }
 
-let xolani = new Visitor("Xolani Mgube", 22, "10 Feb 2020", "09:00", "I have no comment", "Stuber")
-xolani.save()
-// xolani.load()
+let xolani = new Visitor("xolani mgube", 22, "10 Feb 2020", "09:00", "I have no comment", "Sbu")
+let karabo = new Visitor("karabo mantse", 20, "13 Feb 2020", "09:00", "the place had to many people", "Sbu")
+xolani.save();
+karabo.save()
+karabo.load();
+
+module.exports = Visitor;
+
